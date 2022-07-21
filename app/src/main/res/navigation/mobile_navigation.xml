@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.happy.weather.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.happy.weather.ui.Hourly.HourlyFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_hourly" />
+
+    <fragment
+        android:id="@+id/nav_slideshow"
+        android:name="com.happy.weather.ui.Today.TodayFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_today" />
+    <fragment
+        android:id="@+id/healthAndServices"
+        android:name="com.happy.weather.HealthAndServices"
+        android:label="fragment_health_and_services"
+        tools:layout="@layout/fragment_health_and_services" />
+</navigation>

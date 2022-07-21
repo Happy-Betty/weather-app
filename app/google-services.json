@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1052794254052",
+    "project_id": "weather-1131d",
+    "storage_bucket": "weather-1131d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1052794254052:android:464e91527e007faf1132f1",
+        "android_client_info": {
+          "package_name": "com.happy.weather"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1052794254052-6dmah9ouh2k36b74dq5cli03oog6lc9a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHOz71SZFLnTnrqgBLq88SRU-X53mZfT4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1052794254052-6dmah9ouh2k36b74dq5cli03oog6lc9a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

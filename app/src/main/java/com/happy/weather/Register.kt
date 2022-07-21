@@ -1,0 +1,107 @@
+package com.happy.weather
+
+import android.app.ProgressDialog
+import android.content.Intent
+import android.graphics.drawable.AnimationDrawable
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.ktx.Firebase
+import com.happy.weather.databinding.ActivityRegisterBinding
+
+class Register : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_register)
+
+        // making the background dynamic
+        val constraintLayout: ConstraintLayout = findViewById(R.id.register)
+        val animationDrawable: AnimationDrawable = constraintLayout.background as AnimationDrawable
+        animationDrawable.setEnterFadeDuration(1500)
+        animationDrawable.setExitFadeDuration(1500)
+        animationDrawable.start()
+
+
+            // Initialize Firebase Auth
+            auth = Firebase.auth
+
+            val sign = findViewById<TextView>(R.id.sign)
+            sign.setOnClickListener {
+                val intent = Intent(this, Login::class.java)
+                startActivity(intent)
+            }
+
+            val signup = findViewById<Button>(R.id.button)
+            signup.setOnClickListener {
+                performSignUp()
+            }
+
+            //lets get the email and password for the user
+
+            performSignUp()
+        }
+
+        private fun performSignUp() {
+            val email = findViewById<EditText>(R.id.email)
+            val password = findViewById<EditText>(R.id.password)
+
+
+
+            if (email.text.isEmpty() || password.text.isEmpty()) {
+                Toast.makeText(this, "please fill all the fields", Toast.LENGTH_SHORT)
+                    .show()
+                return
+
+            }else
+            {
+                title = "Signing Up"
+                val progressDialog = ProgressDialog(this)
+                progressDialog.setTitle("Signing Up")
+                progressDialog.setMessage("Application is loading, please wait...")
+                progressDialog.show()
+            }
+
+            val inputEmail = email.text.toString()
+            val inputPassword = password.text.toString()
+
+            auth.createUserWithEmailAndPassword(inputEmail,inputPassword)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        // Sign in success, move to the next activity i.e Main activity
+
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+
+                        Toast.makeText(
+                            baseContext, "You have successfully registered, welcome.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                    } else {
+                        // If sign in fails, display a message to the user.
+
+                        Toast.makeText(
+                            baseContext, "Authentication failed.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                    }
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this,"Error occurred ${it.localizedMessage}", Toast.LENGTH_SHORT)
+                        .show()
+                }
+
+        }
+    }
+
+
